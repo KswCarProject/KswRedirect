@@ -35,30 +35,43 @@ class Redirect : AppCompatActivity() {
                                     toParse.absolutePath,
                                     BuildConfig.APPLICATION_ID
                                 )
-                                val packageName = read[0]
-                                val launchIntent =
-                                    applicationContext.packageManager.getLaunchIntentForPackage(
-                                        packageName
-                                    )
-                                if (launchIntent != null) {
-                                    applicationContext.startActivity(launchIntent)
+                                if (read.isNotEmpty()) {
+                                    val packageName = read[0]
+                                    val launchIntent =
+                                        applicationContext.packageManager.getLaunchIntentForPackage(
+                                            packageName
+                                        )
+                                    if (launchIntent != null) {
+                                        applicationContext.startActivity(launchIntent)
+                                    } else {
+                                        Toast.makeText(
+                                            applicationContext,
+                                            String.format(
+                                                getString(
+                                                    R.string.error_config_entry,
+                                                    packageName
+                                                )
+                                            ),
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
                                 } else {
                                     Toast.makeText(
                                         applicationContext,
                                         String.format(
                                             getString(
-                                                R.string.error_config_entry,
+                                                R.string.error_config_invalid,
                                                 packageName
                                             )
                                         ),
-                                        Toast.LENGTH_SHORT
+                                        Toast.LENGTH_LONG
                                     ).show()
                                 }
                             } else {
                                 Toast.makeText(
                                     applicationContext,
                                     getString(R.string.error_config),
-                                    Toast.LENGTH_SHORT
+                                    Toast.LENGTH_LONG
                                 ).show()
                             }
                         }
@@ -73,7 +86,7 @@ class Redirect : AppCompatActivity() {
                 }
             })
             .withErrorListener {
-                Toast.makeText(applicationContext, it.name, Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, it.name, Toast.LENGTH_LONG).show()
             }
             .check()
 

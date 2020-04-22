@@ -1,6 +1,7 @@
 <resources>
 
     <string name="error_config">Could not load configuration file.</string>
+    <string name="error_config_invalid" formatted="false">redirects.xml does not contain an entry for %s</string>
     <string name="error_config_entry" formatted="false">Package (%s) not found, please check redirects.xml</string>
 
 </resources>
