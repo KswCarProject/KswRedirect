@@ -27,6 +27,7 @@ object ParseConfig {
                     val element: Element = node as Element
                     if (element.getAttribute("name") == packageName) {
                         list.add(element.firstChild.nodeValue)
+                        list
                     }
                 }
             }
