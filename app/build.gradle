@@ -61,6 +61,15 @@ android {
         }
     }
 
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def date = new Date()
+            def formattedDate = date.format('ddMMyy_HHmm')
+            def fileName = String.format("KswRedirect_%s_%s.apk", variant.productFlavors[0].name, formattedDate)
+            outputFileName = new File(fileName)
+        }
+    }
+
 }
 
 dependencies {
