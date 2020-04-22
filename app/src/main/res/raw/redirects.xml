@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<redirects>
+
+    <!-- If this file gets corrupt, or you would like to reset it, just delete it off your internal storage -->
+    <!-- To ensure proper formatting, you can simply copy the entire contents of this file to: -->
+    <!-- https://www.freeformatter.com/xml-formatter.html -->
+
+    <redirect name="net.easyconn">com.zjinnova.zlink</redirect>
+    <redirect name="com.ankai.cardvr">comb.blackvuec</redirect>
+    <redirect name="com.estrongs.android.pop">pl.solidexplorer2</redirect>
+
+</redirects>

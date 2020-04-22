@@ -30,37 +30,39 @@ class Redirect : AppCompatActivity() {
                         if (report.areAllPermissionsGranted()) {
                             val toParse =
                                 File(Environment.getExternalStorageDirectory().absolutePath + "/redirects.xml")
-                            if (toParse.exists()) {
-                                val read = ParseConfig.read(
-                                    toParse.absolutePath,
-                                    BuildConfig.APPLICATION_ID
-                                )
-                                if (read.isNotEmpty()) {
-                                    val packageName = read[0]
-                                    val launchIntent =
-                                        applicationContext.packageManager.getLaunchIntentForPackage(
-                                            packageName
-                                        )
-                                    if (launchIntent != null) {
-                                        applicationContext.startActivity(launchIntent)
-                                    } else {
-                                        Toast.makeText(
-                                            applicationContext,
-                                            String.format(
-                                                getString(
-                                                    R.string.error_config_entry,
-                                                    packageName
-                                                )
-                                            ),
-                                            Toast.LENGTH_LONG
-                                        ).show()
-                                    }
+
+                            // If the redirects.xml file doesn't exist, copy it over from res/raw
+                            if (!toParse.exists()) {
+                                ParseConfig.copyFromRaw(applicationContext)
+                            }
+
+                            // Parse the xml file once ready
+                            val read = ParseConfig.read(
+                                toParse.absolutePath,
+                                BuildConfig.APPLICATION_ID
+                            )
+
+                            // Check if there is an entry from the read file
+                            if (read == null) {
+                                Toast.makeText(
+                                    applicationContext,
+                                    getString(R.string.error_config),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            } else if (read.isNotEmpty()) {
+                                val packageName = read[0]
+                                val launchIntent =
+                                    applicationContext.packageManager.getLaunchIntentForPackage(
+                                        packageName
+                                    )
+                                if (launchIntent != null) {
+                                    applicationContext.startActivity(launchIntent)
                                 } else {
                                     Toast.makeText(
                                         applicationContext,
                                         String.format(
                                             getString(
-                                                R.string.error_config_invalid,
+                                                R.string.error_config_entry,
                                                 packageName
                                             )
                                         ),
@@ -70,7 +72,12 @@ class Redirect : AppCompatActivity() {
                             } else {
                                 Toast.makeText(
                                     applicationContext,
-                                    getString(R.string.error_config),
+                                    String.format(
+                                        getString(
+                                            R.string.error_config_invalid,
+                                            packageName
+                                        )
+                                    ),
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
