@@ -3,4 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="ic_launcher_dvr_background">#3D90DC</color>
+    <color name="ic_launcher_pl_background">#DC5273</color>
+
 </resources>

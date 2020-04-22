@@ -21,26 +21,27 @@ android {
         }
     }
 
-    flavorDimensions "target"
+    flavorDimensions "version"
     productFlavors {
         phonelink {
-            dimension "target"
+            dimension "version"
             applicationId "net.easyconn"
+            resValue "string", "app_name", "PhoneLink"
+            manifestPlaceholders = [
+                appIcon: "@mipmap/ic_launcher_pl",
+                roundIcon: "@mipmap/ic_launcher_pl_round"
+            ]
             versionNameSuffix "-pl"
         }
         dvr {
-            dimension "target"
+            dimension "version"
             applicationId "com.ankai.cardvr"
+            resValue "string", "app_name", "DVR"
+            manifestPlaceholders = [
+                appIcon: "@mipmap/ic_launcher_dvr",
+                roundIcon: "@mipmap/ic_launcher_dvr_round"
+            ]
             versionNameSuffix "-dvr"
-        }
-    }
-
-    sourceSets {
-        phonelink {
-            manifest.srcFile 'phonelink/AndroidManifest.xml'
-        }
-        dvr {
-            manifest.srcFile 'dvr/AndroidManifest.xml'
         }
     }
 
