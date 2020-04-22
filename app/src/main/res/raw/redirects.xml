@@ -8,5 +8,6 @@
     <redirect name="net.easyconn">com.zjinnova.zlink</redirect>
     <redirect name="com.ankai.cardvr">comb.blackvuec</redirect>
     <redirect name="com.estrongs.android.pop">pl.solidexplorer2</redirect>
+    <redirect name="com.android.chrome">org.mozilla.firefox</redirect>
 
 </redirects>
