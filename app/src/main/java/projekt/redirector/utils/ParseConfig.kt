@@ -1,9 +1,7 @@
 package projekt.redirector.utils
 
 import android.content.Context
-import android.graphics.pdf.PdfRenderer
 import android.os.Environment
-import android.os.ParcelFileDescriptor
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import org.w3c.dom.Node
@@ -44,7 +42,7 @@ object ParseConfig {
         }
     }
 
-    fun copyFromRaw(applicationContext : Context) {
+    fun copyFromRaw(applicationContext: Context) {
         val file =
             File(Environment.getExternalStorageDirectory().absolutePath + "/redirects.xml")
         if (!file.exists()) {
